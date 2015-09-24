@@ -48,13 +48,13 @@ namespace SoundCycle
         {
             string path = Path.GetDirectoryName(Application.ExecutablePath);
             string[] themefiles = Directory.GetFiles(path, "*.tfg");
-            if (themefiles == null || themefiles.Count() == 0)
+            if (themefiles == null && themefiles.Count() == 0)
             {
                 path = Directory.GetCurrentDirectory();
                 themefiles = Directory.GetFiles(path, "*.tfg");
             }
 
-            if (themefiles != null || themefiles.Count() != 0)
+            if (themefiles != null && themefiles.Count() != 0)
             {
                 m_themeManager.LoadThemes(themefiles[0]);
 
