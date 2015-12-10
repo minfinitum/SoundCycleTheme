@@ -24,6 +24,7 @@ namespace SoundCycle
         ThemeManager m_themeManager;
 
         bool m_paint = false;
+        bool m_play = false;
         SoundVector m_soundVector = new SoundVector(0.0f, 0.0f, 0.0f);
 
         private delegate void AddListBoxItemDelegate(string item, params object[] variableArguments);
@@ -107,6 +108,20 @@ namespace SoundCycle
                     m_mode = AppMode.AM_NORMAL;
 
                 UpdateAppMode();
+            }
+
+
+            if( e.KeyCode == Keys.MediaPlayPause)
+            {
+                if (m_play)
+                    Stop();
+                else
+                    Play();
+            }
+
+            if(e.KeyCode == Keys.MediaStop)
+            {
+                Stop();
             }
         }
 
@@ -267,6 +282,7 @@ namespace SoundCycle
 
         private void Play()
         {
+            m_play = true;
             int themeidx = cbTheme.SelectedIndex;
             if (themeidx != -1)
             {
@@ -285,6 +301,7 @@ namespace SoundCycle
         private void Stop()
         {
             m_paint = false;
+            m_play = false;
             m_themeManager.StopTheme();
         }
 
